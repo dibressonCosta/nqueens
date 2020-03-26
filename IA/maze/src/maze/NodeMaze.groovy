@@ -20,7 +20,7 @@ class NodeMaze extends Node{
 	
 	@Override
 	public Boolean isGoal() {
-		if(this.x == 31 && this.y ==15) {
+		if(this.x == 31 && this.y == 15) {
 			return true
 		}else
 			return false

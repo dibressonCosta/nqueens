@@ -24,19 +24,16 @@ public class SimAnState extends State{
     public State getNextState() {
         int i;
         NodeQueen nextStateQueen[] = new NodeQueen[boardSize];
-        //randomly pick a queen we want to change at a time.
+        //pick a random queen to change at a time
         int rand = randomGenerator.nextInt(boardSize);
 
         for (i = 0; i < boardSize; i++) {
-            nextStateQueen[i] = new NodeQueen(q[i].getIndexOfX(),
-                    q[i].getIndexOfY());
-            //we only change that randomly picked queen in this state. 
-            //if the current queen is not the queen we picked
-            //the next state of that queen will be same as the previos queen.
+            nextStateQueen[i] = new NodeQueen(q[i].getIndexOfX(), q[i].getIndexOfY());
+            //we only change that randomly picked queen in this state! 
+            //if the current queen is the queen we picked the next state will be the same
             if (rand == i) {
                 int temp = randomGenerator.nextInt(boardSize);
-                //this is to ensure that the new state will not be the same as the 
-                //previoius state
+                //this is to ensure that the new state will be different of the previous state
                 while (temp == q[i].getIndexOfY()) {
                     temp = randomGenerator.nextInt(boardSize);
                 }

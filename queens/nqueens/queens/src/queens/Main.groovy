@@ -8,7 +8,7 @@ class Main {
 		int n = 8
 		int tollerence = 0;
 		println "Solution to "+n+" queens using Simulated Annealing: "
-		sa = new SimulatedAnnealing(8,tollerence,1000);
+		sa = new SimulatedAnnealing(8,tollerence,10);
 		Date start = new Date()
 		sa.solve();
 		Date end = new Date()

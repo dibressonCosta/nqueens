@@ -4,7 +4,6 @@ import groovy.time.TimeDuration
 
 class HillClimbing {
 	private static int n ;
-	/** variables to count some steps of the algorithm **/
 	private static int stepsClimbedAfterLastRestart = 0;
 	private static int stepsClimbed =0;
 	private static int heuristic = 0;
@@ -14,7 +13,7 @@ class HillClimbing {
 		this.n = n
 	}
 	
-	//Method to create a new random state with n queens
+	//Method to create a new random board with n queens
 	public static State generateState() {
 		State startState = new HillState(n);
 		Random r = new Random();
@@ -24,8 +23,9 @@ class HillClimbing {
 		return startState;
 	}
 
-	//Method to print the Current State
+	//Method to print the Current State1
 	public static void printState (HillState state) {
+		//Creating temporary board from the present board
 		int[][] tempBoard = new int[n][n];
 		for (int i=0; i<n; i++) {
 			//Get the positions of Queen from the Present board and set those positions as 1 in temp board
@@ -40,7 +40,7 @@ class HillClimbing {
 		}
 	}
 
-	//Method to find Heuristics of a state
+	// Method to find Heuristics of a state
 	public static int findHeuristic (HillState state) {
 		int heuristic = 0;
 		for (int i = 0; i< state.q.length; i++) {
@@ -53,7 +53,7 @@ class HillClimbing {
 		return heuristic;
 	}
 
-	//Method to get the next state with lower heuristic
+	// Method to get the next state with lower heuristic
 	public static HillState nextState (HillState presentState) {
 		HillState nextState = new HillState(n);
 		HillState tmpState = new HillState(n);
@@ -104,14 +104,16 @@ class HillClimbing {
 	
 	public static void solveHill() {
 		int presentHeuristic
-		System.out.println("Solution to "+n+" queens using hill climbing with random restart: ");
-		//Creating the initial State
+		System.out.println("Solution to "+n+" queens using hill climbing with random restart:");
+		//Creating the initial State1
 		State presentState = generateState();
 		Date start = new Date()
 		presentHeuristic = findHeuristic(presentState);
 		
-		// test if the present State is the solution
+		// test if the present State1 is the solution State1
 		while (presentHeuristic != 0) {
+			//  Get the next state
+			//printState(presentState);
 			presentState = nextState(presentState);
 			presentHeuristic  = heuristic;
 		}

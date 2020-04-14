@@ -226,8 +226,7 @@ public class Maze {
 		final Maze maze = new Maze(x, y,1,1,31,15);
 		//maze.display();
 		
-		maze.addPoint(31,15);
-		maze.addPoint(1,1);
+
 		maze.display();
 		
 	}

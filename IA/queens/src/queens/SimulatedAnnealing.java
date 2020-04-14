@@ -11,6 +11,7 @@ public class SimulatedAnnealing extends NQueen{
 
     @Override
     public void solve() {
+        while (!isSolvedPossition(currentState)) {
             double temperature;
             double delta;
             double probability;
@@ -28,5 +29,6 @@ public class SimulatedAnnealing extends NQueen{
                     currentState = nextState;
                 }
             }
+        }
     }
 }

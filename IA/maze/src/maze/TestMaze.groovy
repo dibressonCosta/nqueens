@@ -4,7 +4,7 @@ package maze
 
 class TestMaze {
 	static List Visited = [[0, 0]]
-	static def Directions = ["D": [0, 1], "R": [1, 0], "U":[0, -1], "L":[-1, 0]]
+	static def Directions = ["D": [0, 1], "R": [1, 0], "L":[-1, 0], "U":[0, -1]]
 	static Boolean isVisited(int x, int y) {
 		return Visited.contains([x, y])
 	}
@@ -36,7 +36,7 @@ class TestMaze {
 			}
 		}
 		path.remove(path.size() - 1);
-		maze.rmvPoint(no.x, no.y)
+		//maze.rmvPoint(no.x, no.y)
 		return false;
 	}
 	static List findPath(NodeMaze goal) {
@@ -49,12 +49,12 @@ class TestMaze {
 		return path
 	}
 	static List solve(Maze maze) {
-		LinkedList fringe = []
+		TreeSet<NodeMaze> fringe = new TreeSet<NodeMaze>(new NodeComp())
 		def path = []
 		NodeMaze init = new NodeMaze(maze.getOriginX(), maze.getOriginY())
 		fringe.add(init)
 		while(!fringe.isEmpty()) {
-			NodeMaze current = fringe.remove()
+			NodeMaze current = fringe.pollFirst()
 			if( !maze.isValid(current.x, current.y) || isVisited(current.x, current.y)) {
 				continue
 			}
@@ -62,7 +62,7 @@ class TestMaze {
 				addVisited(current.x, current.y)
 				continue
 			}
-			if(current.isGoal()) {
+			if(current.isGoal(maze.getDestinationX(), maze.getDestinationY())) {
 				return findPath(current)
 			}
 			for (def Dir : Directions) {
@@ -79,21 +79,17 @@ class TestMaze {
 	}
 	static void main(String[] args) {
 		def tom = []
+		TreeSet<NodeMaze> fringe = new TreeSet<NodeMaze>(new NodeComp())
 		List path = []
-		final int x = args.length >= 1 ? Integer.parseInt(args[0]) : 8;
-		final int y = args.length == 2 ? Integer.parseInt(args[1]) : 8;
-		final Maze maze = new Maze(x, y,1,1,31,15);
-
-		//NodeMaze goal = new NodeMaze(31,15)
+		final int x = args.length >= 1 ? Integer.parseInt(args[0]) : 15;
+		final int y = args.length == 2 ? Integer.parseInt(args[1]) : 15;
+		final Maze maze = new Maze(x, y,1,1,59,29);
 		path = solve(maze)
-		//println path
-		//println "deu bom"
+		println path
 		for(NodeMaze no: path) {
 			maze.addPoint(no.x, no.y)
 			maze.display()
 			sleep(200)
 		}
-		
-		//maze.addOption(1, 1)
 	}
 }

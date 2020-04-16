@@ -9,9 +9,8 @@ public class Main {
 		Player p1 = new Player(baralho);
 		Player p2 = new Player(baralho);
 		State state = new State(p1,p2, baralho, 0);
-		Search search = new Search(p1,p2,state);
+		Search search = new Search(state);
 		search.play();
-		
 	}
 
 }
